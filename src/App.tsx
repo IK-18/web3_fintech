@@ -8,17 +8,18 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 function App() {
 	return (
-		<MoonPayProvider
-			apiKey='pk_test_gXuhfbudqsbij76caZNn09gEgakMec'
-			environment='sandbox'
-			debug
-		>
-			<BrowserRouter basename='/'>
-				<Routes>
-					<Route path='/' element={<Home />}></Route>
-				</Routes>
-			</BrowserRouter>
-		</MoonPayProvider>
+		<BrowserRouter basename='/'>
+			<Routes>
+				<Route path='/' element={<Home />}></Route>
+			</Routes>
+			<MoonPayBuyWidget
+				variant='overlay'
+				baseCurrencyCode='usd'
+				baseCurrencyAmount='100'
+				defaultCurrencyCode='eth'
+				visible={false}
+			/>
+		</BrowserRouter>
 	);
 }
 
