@@ -17,13 +17,6 @@ function App() {
 				<Routes>
 					<Route path='/' element={<Home />}></Route>
 				</Routes>
-				{/* <MoonPayBuyWidget
-					variant='overlay'
-					baseCurrencyCode='usd'
-					baseCurrencyAmount='100'
-					defaultCurrencyCode='eth'
-					visible={false}
-				/> */}
 			</BrowserRouter>
 		</MoonPayProvider>
 	);
