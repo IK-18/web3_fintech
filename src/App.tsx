@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import "./styles/output.css";
+import {MoonPayBuyWidget, MoonPayProvider} from "@moonpay/moonpay-react";
+import Home from "./components/Home";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import Converter from "./components/Converter";
+import FiatConverter from "./components/FiatConverter";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<MoonPayProvider
+			apiKey='pk_test_gXuhfbudqsbij76caZNn09gEgakMec'
+			environment='sandbox'
+			debug
+		>
+			<BrowserRouter basename='/'>
+				<Routes>
+					<Route path='/' element={<Home />}></Route>
+				</Routes>
+				<MoonPayBuyWidget
+					variant='overlay'
+					baseCurrencyCode='usd'
+					baseCurrencyAmount='100'
+					defaultCurrencyCode='eth'
+					visible={false}
+				/>
+			</BrowserRouter>
+		</MoonPayProvider>
+	);
 }
 
 export default App;
