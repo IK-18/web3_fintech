@@ -5,8 +5,6 @@ import "./styles/output.css";
 import {MoonPayBuyWidget, MoonPayProvider} from "@moonpay/moonpay-react";
 import Home from "./components/Home";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import Converter from "./components/Converter";
-import FiatConverter from "./components/FiatConverter";
 
 function App() {
 	return (
@@ -19,13 +17,13 @@ function App() {
 				<Routes>
 					<Route path='/' element={<Home />}></Route>
 				</Routes>
-				<MoonPayBuyWidget
+				{/* <MoonPayBuyWidget
 					variant='overlay'
 					baseCurrencyCode='usd'
 					baseCurrencyAmount='100'
 					defaultCurrencyCode='eth'
 					visible={false}
-				/>
+				/> */}
 			</BrowserRouter>
 		</MoonPayProvider>
 	);
