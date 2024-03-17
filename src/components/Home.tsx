@@ -3,6 +3,7 @@ import Layout from "./Layout";
 import {testKey, testURL} from "../tokens/moonpay";
 import axios from "axios";
 import {useState} from "react";
+import {MoonPayBuyWidget, MoonPaySellWidget} from "@moonpay/moonpay-react";
 
 const Home = () => {
 	const [amountInUSDT, setAmountInUSDT] = useState(0);
@@ -32,7 +33,7 @@ const Home = () => {
 			let {data} = await axios.get(
 				`${testURL}sell_quote?baseCurrencyAmount=${amountInUSDT}&quoteCurrencyCode=${newfiat.toLowerCase()}&apiKey=${testKey}`,
 			);
-			setAmountInNewFiat(Number(data.quoteCurrencyAmount).toFixed(2));
+			setAmountInNewFiat(Number(data.quoteCurrencyAmount));
 		} catch (err: any) {
 			console.error(err.message);
 		}
@@ -50,6 +51,19 @@ const Home = () => {
 
 	return (
 		<Layout title='Crypto Converter'>
+			<MoonPayBuyWidget
+				variant='overlay'
+				baseCurrencyCode={fiat}
+				baseCurrencyAmount={String(amountInUSDT)}
+				defaultCurrencyCode='usdc'
+				visible
+			/>
+			<MoonPaySellWidget
+				variant='overlay'
+				baseCurrencyCode='usdc'
+				baseCurrencyAmount={String(amountInNewFiat)}
+				quoteCurrencyCode={newfiat}
+			/>
 			<div className='container'>
 				<div className='row my-5'>
 					<div className='col-lg-6 mx-auto'>
@@ -137,6 +151,7 @@ const Home = () => {
 											/>
 										</div>
 									</div>
+									<button></button>
 								</form>
 							</div>
 						</div>
