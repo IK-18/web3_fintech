@@ -11,7 +11,6 @@ function App() {
 		<BrowserRouter basename='/'>
 			<MoonPayProvider
 				apiKey='pk_test_gXuhfbudqsbij76caZNn09gEgakMec'
-				environment='sandbox'
 				debug
 			>
 				<Routes>
